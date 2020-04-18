@@ -20,7 +20,7 @@ public class SortedArraySetTest {
         System.out.println(set.getSmallest()); // dennis
 
         set.add("ruff");
-        set.add("apple");
+        set.add("stoopid");
         set.add("anderson");
         System.out.println(set); // [anderson, apple, dennis, ruff]: 4
         System.out.println(set.contains("apple")); // true
