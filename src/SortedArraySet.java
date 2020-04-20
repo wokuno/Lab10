@@ -107,7 +107,7 @@ public class SortedArraySet<T extends Comparable<? super T>> {
 
     public void add(T elem){
         if (this.find(elem) == -1){
-            if (this.getSize() > this.data.length){
+            if (this.getSize() == this.data.length){
 
                 T[] temp = (T[]) new Comparable[this.data.length * 2];
                 for (int i = 0; i < this.getSize(); i++){
@@ -116,25 +116,17 @@ public class SortedArraySet<T extends Comparable<? super T>> {
                 this.data = temp;
             }
             if (this.getSize() <= this.data.length ) {
-
-                System.out.println(this.toString());
                 if (this.getSize() == 0){
                     this.data[0] = elem;
                     size ++;
                 }else if (this.getSize() == 1){
-                    System.out.println("size = " + this.getSize());
                     if (this.data[0].compareTo(elem) > 0) {
-                        System.out.println("made it!");
                         this.shiftRight(0);
                         this.data[0] = elem;
                     } else {
-                        System.out.println("just chilling here");
                         this.data[1] = elem;
                         size ++;
-//we made it here with debugging!!!!!!
-                        System.out.println("before our toString");
-                        System.out.println(this.data.toString());
-                        System.out.println("after our tostring");
+
                     }
                 } else {
 
@@ -142,6 +134,7 @@ public class SortedArraySet<T extends Comparable<? super T>> {
                         if (this.data[i].compareTo(elem) > 0) {
                             this.shiftRight(i);
                             this.data[i] = elem;
+                            return;
                         }
                     }
                 }
@@ -193,7 +186,7 @@ public class SortedArraySet<T extends Comparable<? super T>> {
         int back = this.getSize() - 1;
 
         while (front <= back) {
-            int midpoint = (back - front)/2;
+            int midpoint = (back + front)/2;
             if (this.data[midpoint].compareTo(elem) > 0) back = midpoint - 1;
             else if (this.data[midpoint].compareTo(elem) < 0) front = midpoint + 1;
             else return midpoint;
@@ -202,36 +195,17 @@ public class SortedArraySet<T extends Comparable<? super T>> {
     }
 
     public T getBiggest() {
-        int front = 0;
-        int back = this.getSize() - 1;
-        T biggest = this.data[0];
-        int i = 0;
-        if (back == 0){
-            return this.data[0];
+        if (!this.isEmpty()){
+            return this.data[size - 1];
         }
-        while (front <= back) {
-            if(biggest.compareTo(this.data[i]) > 0 ){
-                biggest = this.data[i];
-            }
-            i++;
-        }
-        return biggest;
+        return null;
     }
+
     public T getSmallest() {
-        int front = 0;
-        int back = this.getSize() - 1;
-        T smallest = this.data[0];
-        int i = 0;
-        if (back == 0){
+        if (!this.isEmpty()) {
             return this.data[0];
         }
-        while (front <= back) {
-            if(smallest.compareTo(this.data[i]) < 0 ){
-                smallest = this.data[i];
-            }
-            i++;
-        }
-        return smallest;
+        return null;
     }
 
 }

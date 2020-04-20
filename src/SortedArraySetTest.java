@@ -20,11 +20,12 @@ public class SortedArraySetTest {
         System.out.println(set.getSmallest()); // dennis
 
         set.add("ruff");
-        set.add("stoopid");
+        set.add("apple");
         set.add("anderson");
         System.out.println(set); // [anderson, apple, dennis, ruff]: 4
         System.out.println(set.contains("apple")); // true
         System.out.println(set.contains("dennis")); // true
+        System.out.flush();
         System.out.println(set.getSize()); // 4
         System.out.println(set.isEmpty()); // false
         System.out.println(set.getBiggest()); // ruff
